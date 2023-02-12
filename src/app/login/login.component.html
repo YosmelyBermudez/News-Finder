@@ -1,0 +1,17 @@
+    <form [formGroup]="myForm" (ngSubmit)="registrarse()" >
+        <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Email address</label>
+        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" formControlName="correo">
+        <div *ngIf="myForm.get('email')?.errors && myForm.get('email')?.dirty" id="emailHelp" class="form-text">The field is required</div>
+        </div>
+        <div class="mb-3">
+        <label for="exampleInputPassword1" class="form-label">Password</label>
+        <input type="password" class="form-control" id="exampleInputPassword1" formControlName="clave">
+        <div *ngIf="myForm.get('clave')?.errors && myForm.get('clave')?.dirty">
+            <p *ngIf="myForm.get('clave')?.hasError('required')">The field is required</p>
+            <p *ngIf="myForm.get('clave')?.hasError('minlength')">You must complete at least 6 characters</p>
+            <p *ngIf="myForm.get('clave')?.hasError('maxlength')">You must complete no more than 10 characters</p>
+        </div> 
+    </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>

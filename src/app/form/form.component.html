@@ -1,0 +1,46 @@
+<h1>Register</h1>
+<form [formGroup]="myForm" (ngSubmit)="registrarse()" >
+    <div>
+        <label>Name</label>
+        <input type="text" formControlName="nombre"
+        [ngClass]="{error1:myForm.get('nombre')?.errors && myForm.get('nombre')?.dirty}">
+    </div>
+    <div *ngIf="myForm.get('nombre')?.errors && myForm.get('nombre')?.dirty">
+        The field is required
+    </div>
+    <div>
+        <label>Last Name</label>
+        <input type="text" formControlName="apellido"
+        [ngClass]="{error1:myForm.get('apellido')?.errors && myForm.get('apellido')?.dirty}">
+    </div>
+    <div *ngIf="myForm.get('apellido')?.errors && myForm.get('apellido')?.dirty">
+        The field is required
+    </div>
+    <div>
+        <label>Phone</label>
+        <input type="phone" formControlName="telefono">
+    </div>
+    <div>
+        <label>Email</label>
+        <input type="email" formControlName="correo"
+        [ngClass]="{error1:myForm.get('email')?.errors && myForm.get('email')?.dirty}">
+    </div>
+    <div *ngIf="myForm.get('email')?.errors && myForm.get('email')?.dirty">
+        The field is required
+    </div>
+    <div>
+        <label>Password</label>
+        <input type="password" formControlName="clave"
+        [ngClass]="{error1:myForm.get('clave')?.hasError('minlength') && myForm.get('clave')?.dirty,
+        error2:myForm.get('clave')?.hasError('maxlength') && myForm.get('clave')?.dirty}">
+    </div>
+    <div *ngIf="myForm.get('clave')?.errors && myForm.get('clave')?.dirty">
+        <p *ngIf="myForm.get('clave')?.hasError('required')">The field is required</p>
+        <p *ngIf="myForm.get('clave')?.hasError('minlength')">You must complete at least 6 characters</p>
+        <p *ngIf="myForm.get('clave')?.hasError('maxlength')">You must complete no more than 10 characters</p>
+    </div>
+    <div class="col-12">
+        <button type="submit" [disabled]="myForm.invalid" class="btn btn-primary">Sign in</button>
+    </div>
+</form>
+    
